@@ -2,6 +2,7 @@
   "name": "vite-react",
   "private": true,
   "scripts": {
+    "build": "vite build",
     "start": "vite"
   },
   "devDependencies": {
