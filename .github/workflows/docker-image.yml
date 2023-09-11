@@ -1,0 +1,17 @@
+name: build and push docker image
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - run: docker login -u ${{github.repository_owner}} -p ${{secrets.GITHUB_TOKEN}} ghcr.io
+      - run: docker build . --tag ghcr.io/${{github.repository}}:${{github.ref_name}}
+      - run: docker push ghcr.io/${{github.repository}}:${{github.ref_name}}
